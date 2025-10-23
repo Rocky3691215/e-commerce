@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your Cart - Rocky's Cafe</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+        /* Custom styles for the cart page */
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+        .item-row {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            align-items: center;
+        }
+        .item-row:last-child {
+            border-bottom: none;
+        }
+    </style>
+  </head>
+  <body>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    <section>
+        <nav class="navbar navbar-expand-lg bg-warning bg-gradient">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-middle">
+                    Rocky's Cafe
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto ms-3 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html"><i class="bi bi-house-fill"></i> Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="about.html"><i class="bi bi-people-fill"></i> About Us</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-bag-plus-fill"></i> Products</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="coffee.html">Coffee</a></li>
+                                <li><a class="dropdown-item" href="bread.html">Bread</a></li>
+                                <li><a class="dropdown-item" href="bundle.html">Bundle</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="cart.html"><i class="bi bi-cart-plus-fill"></i> Cart</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-bag-plus-fill"></i> Login/Register</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="login.html">Login</a></li>
+                                <li><a class="dropdown-item" href="register.html">Register</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <section class="container my-5">
+        <h1 class="text-center mb-5 fw-bold">Your Shopping Cart <i class="bi bi-cart-fill text-warning"></i></h1>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card p-4 shadow-sm">
+                    <h4 class="mb-3">Items in Cart</h4>
+                    <div id="cart-items-container">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="card p-4 bg-light shadow-sm">
+                    <h4 class="mb-3 text-warning">Cart Summary</h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
+                            Subtotal (<span id="total-items-count">0</span> items):
+                            <span class="fw-bold" id="subtotal-amount">Php 0.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
+                            Shipping:
+                            <span id="shipping-amount">Php 50.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
+                            Tax (<span id="tax-rate">5</span>%):
+                            <span id="tax-amount">Php 0.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center bg-light fs-5">
+                            **Order Total:**
+                            <span class="fw-bolder text-danger" id="order-total">Php 50.00</span>
+                        </li>
+                    </ul>
+                    <div class="d-grid mt-4">
+                        <button class="btn btn-warning btn-lg fw-bold" type="button" onclick="window.location.href='payment.html'">
+                            Proceed to Checkout
+                            <i class="bi bi-arrow-right-circle-fill ms-2"></i>
+                        </button>
+                    </div>
+                    <a href="index.html" class="btn btn-outline-secondary mt-2">
+                        <i class="bi bi-arrow-left"></i> Continue Shopping
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer
+          class="text-center text-lg-start text-white"
+          style="background-color: #ff9900"
+          >
+    <div class="container p-4 pb-0">
+      <section class="">
+        <div class="row">
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">
+              Rocky's Cafe
+            </h6>
+            <p>
+              We're not just a cafe, we're a community hub where every cup of coffee and every bite of pastry is crafted with passion and care.
+               Join us in to soothe your soul.
+            </p>
+          </div>
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+            <p>
+              <a href="coffee.html" class="text-white"> <i class="bi bi-cup-hot-fill"></i> Coffee</a>
+            </p>
+            <p>
+              <a href="bread.html" class="text-white"><i class="bi bi-fork-knife"></i> Bread</a>
+            </p>
+            <p>
+              <a href="bundle.html" class="text-white"><i class="bi bi-cup-hot-fill"></i> <i class="bi bi-fork-knife"></i> Bundle</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+    <h6 class="text-uppercase mb-4 font-weight-bold"><a href="contact.html" class="text-white text-decoration-none">Contact</a></h6>
+    <p><i class="bi bi-geo-alt-fill"></i> <a href="https://www.google.com/maps/search/?api=1&query=Bontoc%2C+Mountain+Province%2C+Philippines" target="_blank" class="text-white text-decoration-none">Bontoc, Mountain Province, Philippines</a></p>
+
+    <p><i class="bi bi-envelope-fill"></i> <a href="mailto:rocky@gmail.com" class="text-white text-decoration-none">rocky@gmail.com</a></p>
+    <p><i class="bi bi-telephone-fill"></i> + 01 234 567 88</p>
+</div>
+
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
+
+            <!-- Facebook -->
+            <a
+               class="btn btn-primary btn-floating m-1"
+               style="background-color: #3b5998"
+               href="https://www.facebook.com"
+               role="button"
+               ><i class="bi bi-facebook"></i>
+              </a>
+
+
+            <!-- Google -->
+
+
+            <a
+               class="btn btn-primary btn-floating m-1"
+               style="background-color: #dd4b39"
+               href="https://www.google.com"
+               role="button"
+               ><i class="bi bi-google"></i>
+              </a>
+
+
+            <!-- Github -->
+            <a
+               class="btn btn-primary btn-floating m-1"
+               style="background-color: #333333"
+               href="https://github.com"
+               role="button"
+               ><i class="bi bi-github"></i>
+              </a>
+          </div>
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+    </div>
+    <!-- Grid container -->
+
+    <div
+         class="text-center p-3"
+         style="background-color: rgba(0, 0, 0, 0.2)"
+         >
+      © 2025 Copyright:
+      <a class="text-white" href="index.html"
+         >rocky'scafe.com</a
+        >
+    </div>
+    </footer>
+  <script>
+    // --- Products Data ---
+    const products = {
+        1: { name: 'Original Blend Coffee', price: 100.00, image: 'images/Product 1.png' },
+        2: { name: 'Dark Roast Espresso', price: 120.00, image: 'images/Dark Roast Espresso.png' },
+        3: { name: 'Decaf Comfort Brew', price: 110.00, image: 'images/Decaf Comfort Brew.png' },
+        4: { name: 'Italian Mahogany', price: 145.00, image: 'images/Italian Mahogany.png' },
+        5: { name: 'French Toast', price: 100.00, image: 'images/Product 2.png' },
+        6: { name: 'Almond Chocolate Croissant', price: 85.00, image: 'images/Almond Chocolate Croissant.png' },
+        7: { name: 'Classic French Baguette', price: 70.00, image: 'images/Classic French Baguette.png' },
+        8: { name: 'Glazed Lemon Poppy Seed Cake', price: 130.00, image: 'images/Glazed Lemon Poppy Seed Cake.png' },
+        9: { name: 'The Perfect Pair Bundle', price: 180.00, image: 'images/Product 3.png' },
+        10: { name: 'Weekend Starter Pack', price: 350.00, image: 'images/Weekend Starter Pack.png' },
+        11: { name: 'The Baker\'s Dozen Bread Deal', price: 210.00, image: 'images/The Baker\'s Dozen Bread Deal.png' }
+    };
+
+    // --- Cart Calculation Constants ---
+    const SHIPPING_FEE = 50.00;
+    const TAX_RATE = 0.05; // 5%
+
+    // --- DOM Elements ---
+    const subtotalDisplay = document.getElementById('subtotal-amount');
+    const totalItemsCount = document.getElementById('total-items-count');
+    const taxAmountDisplay = document.getElementById('tax-amount');
+    const orderTotalDisplay = document.getElementById('order-total');
+
+    // --- Local Storage Functions ---
+    function saveCart() {
+        const cart = {};
+        const itemRows = document.querySelectorAll('.item-row');
+        itemRows.forEach(row => {
+            const id = row.getAttribute('data-product-id');
+            const quantity = parseInt(row.querySelector('.quantity-input').value);
+            cart[id] = quantity;
+        });
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function loadCart() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || {};
+        const container = document.getElementById('cart-items-container');
+        container.innerHTML = ''; // Clear existing items
+
+        let hasItems = false;
+        for (const [id, quantity] of Object.entries(cart)) {
+            if (quantity > 0) {
+                hasItems = true;
+                const product = products[id];
+                if (product) {
+                    const itemRow = document.createElement('div');
+                    itemRow.className = 'item-row d-flex align-items-center';
+                    itemRow.setAttribute('data-product-id', id);
+                    itemRow.setAttribute('data-price', product.price);
+                    itemRow.innerHTML = `
+                        <div class="d-flex align-items-center flex-grow-1">
+                            <img src="${product.image}" alt="${product.name}" class="cart-item-img me-3">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">${product.name}</h6>
+                                <p class="text-muted mb-1">Php ${product.price.toFixed(2)}</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-outline-secondary btn-sm me-2" onclick="updateQuantity(this, -1)">-</button>
+                            <input type="number" class="form-control quantity-input text-center" value="${quantity}" min="1" style="width: 60px;">
+                            <button class="btn btn-outline-secondary btn-sm ms-2" onclick="updateQuantity(this, 1)">+</button>
+                        </div>
+                        <div class="ms-3 text-end">
+                            <p class="fw-bold subtotal-display mb-1">Php ${(quantity * product.price).toFixed(2)}</p>
+                            <button class="btn btn-danger btn-sm" onclick="removeItem(this)">Remove</button>
+                        </div>
+                    `;
+                    container.appendChild(itemRow);
+                }
+            }
+        }
+
+        if (!hasItems) {
+            container.innerHTML = '<div class="alert alert-info text-center mt-3" role="alert">Your cart is empty. <a href="index.html" class="alert-link">Start shopping!</a></div>';
+        }
+    }
+
+    // --- Core Calculation Function ---
+    function calculateCartTotals() {
+        let subtotal = 0;
+        let totalItems = 0;
+
+        // Iterate over all item rows
+        const itemRows = document.querySelectorAll('.item-row');
+        itemRows.forEach(row => {
+            if (row.style.display !== 'none') {
+                const quantity = parseInt(row.querySelector('.quantity-input').value);
+                const price = parseFloat(row.getAttribute('data-price'));
+
+                const itemSubtotal = quantity * price;
+
+                // Update the display for the individual item subtotal
+                row.querySelector('.subtotal-display').textContent = 'Php ' + itemSubtotal.toFixed(2);
+
+                subtotal += itemSubtotal;
+                totalItems += quantity;
+            }
+        });
+
+        // Calculate final amounts
+        const tax = subtotal * TAX_RATE;
+        const total = subtotal + tax + SHIPPING_FEE;
+
+        // Update Cart Summary display
+        subtotalDisplay.textContent = 'Php ' + subtotal.toFixed(2);
+        totalItemsCount.textContent = totalItems;
+        taxAmountDisplay.textContent = 'Php ' + tax.toFixed(2);
+
+        // Shipping is fixed for this example, but you can update its display if needed
+        document.getElementById('shipping-amount').textContent = 'Php ' + SHIPPING_FEE.toFixed(2);
+
+        orderTotalDisplay.textContent = 'Php ' + total.toFixed(2);
+    }
+
+    // --- Button Functionality ---
+
+    /**
+     * Updates the quantity of a cart item and recalculates totals.
+     * @param {HTMLElement} button - The clicked plus or minus button.
+     * @param {number} change - The change in quantity (-1 for minus, 1 for plus).
+     */
+    function updateQuantity(button, change) {
+        // Find the input field relative to the button
+        const input = button.parentNode.querySelector('.quantity-input');
+        let currentQuantity = parseInt(input.value);
+
+        // Calculate new quantity
+        let newQuantity = currentQuantity + change;
+
+        // Ensure quantity doesn't go below 1
+        if (newQuantity < 1) {
+            newQuantity = 1;
+        }
+
+        // Update the input value
+        input.value = newQuantity;
+
+        // Save cart to local storage
+        saveCart();
+
+        // Recalculate everything
+        calculateCartTotals();
+    }
+
+    /**
+     * Removes an item row from the cart and recalculates totals.
+     * @param {HTMLElement} button - The clicked delete button.
+     */
+    function removeItem(button) {
+        if (confirm("Are you sure you want to remove this item from your cart?")) {
+            // Find the parent item row (the one with class 'item-row')
+            const itemRow = button.closest('.item-row');
+            if (itemRow) {
+                const id = itemRow.getAttribute('data-product-id');
+                // Set quantity to 0 in localStorage to persist removal
+                const cart = JSON.parse(localStorage.getItem('cart')) || {};
+                cart[id] = 0;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                itemRow.remove();
+                // Recalculate totals after removal
+                calculateCartTotals();
+            }
+
+            // Optional: Show a message if the cart is empty
+            if (document.querySelectorAll('.item-row').length === 0) {
+                const container = document.getElementById('cart-items-container');
+                container.innerHTML = '<div class="alert alert-info text-center mt-3" role="alert">Your cart is empty. <a href="index.html" class="alert-link">Start shopping!</a></div>';
+            }
+        }
+    }
+
+    // Initial calculation when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        loadCart();
+        calculateCartTotals();
+    });
+  </script>
+
+  </body>
+</html>
